@@ -1,23 +1,24 @@
 
 
 
-const apikey = process.env.GEMINI_API_KEY;
+async function main(text_user) {
+  try {
+    const response = await fetch("/api/gemini", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text:text_user,
+      }),
+    });
 
+    const data = await response.json();
 
-import { GoogleGenAI } from "@google/genai";
-
-const ai = new GoogleGenAI({ apiKey: apikey });
-
-async function main(text_here) {
-    console.log("Generating content...");
-    const pormpt = `${process.env.PROMPT}
-Text: ${text_here}`;
-  const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
-    contents: pormpt,
-  });
-  console.log('response form open ai ' + response.text);
-  return response.text;
+    console.log(data.result);
+  } catch (error) {
+    console.error("Frontend Error:", error);
+  }
 }
 
 
