@@ -3,7 +3,7 @@
 import  main  from "@/app/helpers/RequestToAiModel";
 import { useState } from "react";
 
-export default function Input() {
+export default function Inputp() {
     const [text, setText] = useState("");
     const [response, setResponse] = useState("");
     const handlerequest = async() => {
@@ -30,7 +30,7 @@ return (
           <h3 className="mb-2 font-semibold">Humanized Text:</h3>
           <p>{response}</p>
         </div>
-      ) }
+      )}
     </div>
   );
 }
